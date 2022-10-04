@@ -31,6 +31,17 @@ namespace JewelryWorkshopWinFormsUI
 
             GlobalStuff.Connector.OnClientCreated += Connector_OnClientCreated;
             GlobalStuff.Connector.OnClientsDeleted += Connector_OnClientsDeleted;
+            GlobalStuff.Connector.OnClientsUpdated += Connector_OnClientsUpdated;
+        }
+
+        private void Connector_OnClientsUpdated(object? sender, List<ClientModel> clientModels)
+        {
+            foreach (ClientModel clientModel in clientModels)
+            {
+                listOfClients.Remove(listOfClients.Where(x => x.Id == clientModel.Id).FirstOrDefault());
+                listOfClients.Add(clientModel);
+            }
+            WireUpListOfClients();
         }
 
         private void Connector_OnClientsDeleted(object? sender, List<ClientModel> clientModels)
@@ -38,8 +49,8 @@ namespace JewelryWorkshopWinFormsUI
             foreach (ClientModel clientModel in clientModels)
             {
                 listOfClients.Remove(listOfClients.Where(x => x.Id == clientModel.Id).FirstOrDefault());
-                WireUpListOfClients();
             }
+            WireUpListOfClients();
         }
         private void Connector_OnClientCreated(object? sender, ClientModel clientModel)
         {

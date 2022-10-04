@@ -30,14 +30,110 @@ namespace JewelryWorkshop
             WireUpLists();
             productPriceLabel.Text = $"Product Price: {productModel.ProductPrice:C2}";
 
-            GlobalStuff.Connector.OnTypeCreated += Connector_OnTypeCreated;
-            GlobalStuff.Connector.OnTypesDeleted += Connector_OnTypesDeleted;
-            GlobalStuff.Connector.OnMaterialCreated += Connector_OnMaterialCreated;
-            GlobalStuff.Connector.OnMaterialsDeleted += Connector_OnMaterialsDeleted;
-            GlobalStuff.Connector.OnTechniqueCreated += Connector_OnTechniqueCreated;
-            GlobalStuff.Connector.OnTechniquesDeleted += Connector_OnTechniquesDeleted;
+            SubscribeToEvents();
         }
 
+        public CreateProduct(ProductModel productToEdit)
+        {
+            InitializeComponent();
+
+            productModel = productToEdit;
+            productNameTextBox.Text = productModel.ProductName;
+            addedMaterials = productModel.ProductComposition;
+            addedTechniques = productModel.ProductProcessing;
+            foreach (MaterialModel material in productModel.ProductComposition)
+            {
+                MaterialModel materialToRemove = listOfMaterials.Where(x => x.Id == material.Id).FirstOrDefault();
+                listOfMaterials.Remove(materialToRemove);
+            }
+            foreach (JewelryTechniqueModel technique in productModel.ProductProcessing)
+            {
+                JewelryTechniqueModel techniqueToRemove = listOfTechniques.Where(x => x.Id == technique.Id).FirstOrDefault();
+                listOfTechniques.Remove(techniqueToRemove);
+            }
+
+            WireUpLists();
+            productPriceLabel.Text = $"Product Price: {productModel.ProductPrice:C2}";
+
+            createProductButton.Text = "Submit Changes";
+            headerLabel.Text = "Product Editor";
+
+            if (productModel.ProductType != null)
+            {
+                productTypeComboBox.SelectedValue = productModel.ProductType.Id;
+            }
+            SubscribeToEvents();
+        }
+
+        private void SubscribeToEvents()
+        {
+            GlobalStuff.Connector.OnTypeCreated += Connector_OnTypeCreated;
+            GlobalStuff.Connector.OnTypesDeleted += Connector_OnTypesDeleted;
+            GlobalStuff.Connector.OnTypesUpdated += Connector_OnTypesUpdated;
+            GlobalStuff.Connector.OnMaterialCreated += Connector_OnMaterialCreated;
+            GlobalStuff.Connector.OnMaterialsDeleted += Connector_OnMaterialsDeleted;
+            GlobalStuff.Connector.OnMaterialsUpdated += Connector_OnMaterialsUpdated;
+            GlobalStuff.Connector.OnTechniqueCreated += Connector_OnTechniqueCreated;
+            GlobalStuff.Connector.OnTechniquesDeleted += Connector_OnTechniquesDeleted;
+            GlobalStuff.Connector.OnTechniquesUpdated += Connector_OnTechniquesUpdated;
+        }
+        private void Connector_OnTechniquesUpdated(object? sender, List<JewelryTechniqueModel> techniqueModels)
+        {
+            foreach (JewelryTechniqueModel techniqueModel in techniqueModels)
+            {
+                JewelryTechniqueModel techniqueToUpdatete = listOfTechniques.Where(x => x.Id == techniqueModel.Id).FirstOrDefault();
+                if (techniqueToUpdatete != null)
+                {
+                    listOfTechniques.Remove(techniqueToUpdatete);
+                    listOfTechniques.Add(techniqueModel);
+                    WireUpTechniquesList();
+                }
+                else
+                {
+                    JewelryTechniqueModel techniqueToUpdateSecondCase = addedTechniques.Where(x => x.Id == techniqueModel.Id).FirstOrDefault();
+                    addedTechniques.Remove(techniqueToUpdateSecondCase);
+                    listOfTechniques.Add(techniqueModel);
+                    WireUpdAddedTechniquesList();
+                    WireUpTechniquesList();
+
+                    productModel.ProductPrice -= Decimal.Multiply(techniqueToUpdateSecondCase.Price, Convert.ToDecimal(techniqueToUpdateSecondCase.Amount));
+                    productPriceLabel.Text = $"Product Price: {productModel.ProductPrice:C2}";
+                }
+            }
+        }
+        private void Connector_OnMaterialsUpdated(object? sender, List<MaterialModel> materialModels)
+        {
+            foreach (MaterialModel materialModel in materialModels)
+            {
+                MaterialModel materialToUpdatete = listOfMaterials.Where(x => x.Id == materialModel.Id).FirstOrDefault();
+                if (materialToUpdatete != null)
+                {
+                    listOfMaterials.Remove(materialToUpdatete);
+                    listOfMaterials.Add(materialModel);
+                    WireUpMaterialsList();
+                }
+                else
+                {
+                    MaterialModel materialToUpdateSecondCase = addedMaterials.Where(x => x.Id == materialModel.Id).FirstOrDefault();
+                    addedMaterials.Remove(materialToUpdateSecondCase);
+                    listOfMaterials.Add(materialModel);
+                    WireUpdAddedMaterialsList();
+                    WireUpMaterialsList();
+
+                    productModel.ProductPrice -= Decimal.Multiply(materialToUpdateSecondCase.Price, Convert.ToDecimal(materialToUpdateSecondCase.Amount));
+                    productPriceLabel.Text = $"Product Price: {productModel.ProductPrice:C2}";
+                }
+            }
+        }
+        private void Connector_OnTypesUpdated(object? sender, List<ProductTypeModel> typeModels)
+        {
+            foreach (ProductTypeModel typeModel in typeModels)
+            {
+                listOfTypes.Remove(listOfTypes.Where(x => x.Id == typeModel.Id).FirstOrDefault());
+                listOfTypes.Add(typeModel);
+            }
+            WireUpTypesList();
+        }
         private void Connector_OnTechniquesDeleted(object? sender, List<JewelryTechniqueModel> techniqueModels)
         {
             foreach (JewelryTechniqueModel techniqueModel in techniqueModels)
@@ -117,6 +213,7 @@ namespace JewelryWorkshop
             productTypeComboBox.DataSource = null;
             productTypeComboBox.DataSource = listOfTypes;
             productTypeComboBox.DisplayMember = "TypeName";
+            productTypeComboBox.ValueMember = "Id";
         }
         private void WireUpMaterialsList()
         {
@@ -134,15 +231,21 @@ namespace JewelryWorkshop
         {
             addedMaterialsDataGridView.DataSource = null;
             addedMaterialsDataGridView.DataSource = addedMaterials.GetRange(0,addedMaterials.Count);
-            addedMaterialsDataGridView.Columns[0].Visible = false;
-            addedMaterialsDataGridView.Columns[2].Visible = false;
+            if (addedMaterialsDataGridView.Columns.Count > 0)
+            {
+                addedMaterialsDataGridView.Columns[0].Visible = false;
+                addedMaterialsDataGridView.Columns[2].Visible = false; 
+            }
         }
         private void WireUpdAddedTechniquesList()
         {
             addedTechniquesDataGridView.DataSource = null;
             addedTechniquesDataGridView.DataSource = addedTechniques.GetRange(0,addedTechniques.Count);
-            addedTechniquesDataGridView.Columns[0].Visible = false;
-            addedTechniquesDataGridView.Columns[2].Visible = false;
+            if (addedTechniquesDataGridView.Columns.Count > 0)
+            {
+                addedTechniquesDataGridView.Columns[0].Visible = false;
+                addedTechniquesDataGridView.Columns[2].Visible = false; 
+            }
         }
 
         private void newProductTypeLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -267,11 +370,19 @@ namespace JewelryWorkshop
             productModel.ProductComposition = addedMaterials;
             productModel.ProductProcessing = addedTechniques;
 
-            GlobalStuff.Connector.CreateProduct(productModel);
 
-            this.Close();
-
-            MessageBox.Show("The Product has been created, check the catalogue","New Product",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (createProductButton.Text == "Submit Changes" || headerLabel.Text == "Product Editor")
+            {
+                GlobalStuff.Connector.UpdateProduct(productModel);
+                this.Close();
+                MessageBox.Show("The Product has been updated, check the catalogue", "Updated Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                GlobalStuff.Connector.CreateProduct(productModel);
+                this.Close();
+                MessageBox.Show("The Product has been created, check the catalogue", "New Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

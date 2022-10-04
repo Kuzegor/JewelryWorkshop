@@ -13,7 +13,7 @@ namespace JewelryWorkshopWinFormsUI
 {
     public partial class EditData : Form
     {
-        public EditData()
+        public EditData(ViewOrders callingViewOrdersForm)
         {
             InitializeComponent();
         }

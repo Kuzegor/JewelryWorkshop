@@ -37,6 +37,7 @@
             this.compositionLabel = new System.Windows.Forms.Label();
             this.compositionDataGridView = new System.Windows.Forms.DataGridView();
             this.processingDataGridView = new System.Windows.Forms.DataGridView();
+            this.editButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.compositionDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processingDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -130,12 +131,25 @@
             this.processingDataGridView.Size = new System.Drawing.Size(512, 263);
             this.processingDataGridView.TabIndex = 9;
             // 
+            // editButton
+            // 
+            this.editButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.editButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.editButton.Location = new System.Drawing.Point(837, 16);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(219, 49);
+            this.editButton.TabIndex = 10;
+            this.editButton.Text = "Edit Product";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            // 
             // ViewProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1070, 581);
+            this.Controls.Add(this.editButton);
             this.Controls.Add(this.processingDataGridView);
             this.Controls.Add(this.compositionDataGridView);
             this.Controls.Add(this.compositionLabel);
@@ -166,5 +180,6 @@
         private Label compositionLabel;
         private DataGridView compositionDataGridView;
         private DataGridView processingDataGridView;
+        private Button editButton;
     }
 }

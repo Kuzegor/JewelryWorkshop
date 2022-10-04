@@ -83,5 +83,16 @@ namespace JewelryWorkshopWinFormsUI
             GlobalStuff.Connector.DeleteMaterials(selectedMaterials);
             WireUpLists();
         }
+
+        private void saveSelectedButton_Click_1(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in materialsDataGridView.SelectedRows)
+            {
+                MaterialModel materialToDelete = listOfMaterials.Where(x => x.Id == int.Parse(row.Cells[0].Value.ToString())).FirstOrDefault();
+                selectedMaterials.Add(materialToDelete);
+            }
+            GlobalStuff.Connector.UpdateMaterials(selectedMaterials);
+            WireUpLists();
+        }
     }
 }

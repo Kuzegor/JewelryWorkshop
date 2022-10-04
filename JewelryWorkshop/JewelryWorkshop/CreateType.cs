@@ -26,9 +26,9 @@ namespace JewelryWorkshopWinFormsUI
 
         private void WireUpLists()
         {
-            productTypesListBox.DataSource = null;
-            productTypesListBox.DataSource = listOfTypes;
-            productTypesListBox.DisplayMember = "TypeName";
+            productTypesDataGridView.DataSource = null;
+            productTypesDataGridView.DataSource = listOfTypes.GetRange(0, listOfTypes.Count);
+            productTypesDataGridView.Columns[0].Visible = false;
         }
 
         private void createTypeButton_Click(object sender, EventArgs e)
@@ -52,12 +52,24 @@ namespace JewelryWorkshopWinFormsUI
 
         private void deleteSelectedTypeButton_Click(object sender, EventArgs e)
         {
-            foreach (ProductTypeModel type in productTypesListBox.SelectedItems)
+            foreach (DataGridViewRow row in productTypesDataGridView.SelectedRows)
             {
-                selectedTypes.Add(type);
-                listOfTypes.Remove(type);
+                ProductTypeModel typeToDelete = listOfTypes.Where(x => x.Id == int.Parse(row.Cells[0].Value.ToString())).FirstOrDefault();
+                selectedTypes.Add(typeToDelete);
+                listOfTypes.Remove(typeToDelete);
             }
             GlobalStuff.Connector.DeleteTypes(selectedTypes);
+            WireUpLists();
+        }
+
+        private void saveSelectedButton_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in productTypesDataGridView.SelectedRows)
+            {
+                ProductTypeModel typeToDelete = listOfTypes.Where(x => x.Id == int.Parse(row.Cells[0].Value.ToString())).FirstOrDefault();
+                selectedTypes.Add(typeToDelete);
+            }
+            GlobalStuff.Connector.UpdateTypes(selectedTypes);
             WireUpLists();
         }
     }

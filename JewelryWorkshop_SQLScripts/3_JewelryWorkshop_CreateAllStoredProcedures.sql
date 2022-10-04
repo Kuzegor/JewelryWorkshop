@@ -393,3 +393,121 @@ BEGIN
 	select @id = SCOPE_IDENTITY();
 END
 GO
+
+CREATE PROCEDURE dbo.spClients_UpdateById
+@LastName nvarchar(60),
+@FirstName nvarchar(60),
+@MiddleName nvarchar(60),
+@Phone nvarchar(60),
+@id int
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	Update dbo.Clients
+	set LastName = @LastName,
+	FirstName = @FirstName,
+	MiddleName = @MiddleName,
+	Phone = @Phone
+	where dbo.Clients.id = @id;
+END
+GO
+
+CREATE PROCEDURE dbo.spJewelryTechniques_UpdateById
+@TechniqueName nvarchar(60),
+@Price money,
+@Unit nvarchar(20),
+@id int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	update dbo.JewelryTechniques
+	set TechniqueName = @TechniqueName,
+	Price = @Price,
+	Unit = @Unit
+	where id = @id;
+END
+GO
+
+CREATE PROCEDURE dbo.spMaterials_UpdateById
+@MaterialName nvarchar(60),
+@Price money,
+@Unit nvarchar(20),
+@id int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	update dbo.Materials
+	set MaterialName = @MaterialName,
+	Price = @Price,
+	Unit = @Unit
+	where id = @id;
+END
+GO
+
+CREATE PROCEDURE dbo.spProducts_UpdateById
+@ProductName nvarchar(60),
+@ProductTypeId int,
+@ProductPrice money,
+@id int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	update dbo.Products
+	set ProductName = @ProductName,
+	ProductTypeId = @ProductTypeId,
+	ProductPrice = @ProductPrice
+	where id = @id;
+
+	delete from dbo.ProductComposition
+	where dbo.ProductComposition.ProductId = @id;
+
+	delete from dbo.ProductProcessing 
+	where dbo.ProductProcessing.ProductId = @id;
+END
+GO
+
+CREATE PROCEDURE dbo.spProducts_UpdatePriceById
+@ProductPrice money,
+@id int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    update dbo.Products
+	set ProductPrice = @ProductPrice
+	where id = @id;
+END
+GO
+
+CREATE PROCEDURE dbo.spProductTypes_UpdateById
+@TypeName nvarchar(60),
+@id int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    update dbo.ProductTypes
+	set TypeName = @TypeName
+	where id = @id;
+END
+GO
+
+
+

@@ -84,5 +84,16 @@ namespace JewelryWorkshopWinFormsUI
             GlobalStuff.Connector.DeleteTechniques(selectedTechniques);
             WireUpLists();
         }
+
+        private void saveSelectedButton_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in techniquesDataGridView.SelectedRows)
+            {
+                JewelryTechniqueModel techniqueToDelete = listOfTechniques.Where(x => x.Id == int.Parse(row.Cells[0].Value.ToString())).FirstOrDefault();
+                selectedTechniques.Add(techniqueToDelete);
+            }
+            GlobalStuff.Connector.UpdateTechniques(selectedTechniques);
+            WireUpLists();
+        }
     }
 }

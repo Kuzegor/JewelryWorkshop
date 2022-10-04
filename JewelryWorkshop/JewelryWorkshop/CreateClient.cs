@@ -77,5 +77,16 @@ namespace JewelryWorkshopWinFormsUI
             GlobalStuff.Connector.DeleteClients(selectedClients);
             WireUpLists();            
         }
+
+        private void saveSelectedButton_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in clientsDataGridView.SelectedRows)
+            {
+                ClientModel clientToDelete = listOfClients.Where(x => x.Id == int.Parse(row.Cells[0].Value.ToString())).FirstOrDefault();
+                selectedClients.Add(clientToDelete);
+            }
+            GlobalStuff.Connector.UpdateClients(selectedClients);
+            WireUpLists();
+        }
     }
 }

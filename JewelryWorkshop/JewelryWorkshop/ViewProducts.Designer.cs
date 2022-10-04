@@ -45,9 +45,9 @@
             this.headerLabel.Font = new System.Drawing.Font("Nirmala UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.headerLabel.Location = new System.Drawing.Point(12, 9);
             this.headerLabel.Name = "headerLabel";
-            this.headerLabel.Size = new System.Drawing.Size(526, 54);
+            this.headerLabel.Size = new System.Drawing.Size(482, 54);
             this.headerLabel.TabIndex = 0;
-            this.headerLabel.Text = "Products Viewer / Catalogue";
+            this.headerLabel.Text = "Products Viewer / Catalog";
             // 
             // typeLabel
             // 

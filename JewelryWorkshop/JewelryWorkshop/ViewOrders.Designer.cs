@@ -102,7 +102,6 @@
             this.editDataButton.TabIndex = 7;
             this.editDataButton.Text = "View And Edit Data";
             this.editDataButton.UseVisualStyleBackColor = true;
-            this.editDataButton.Click += new System.EventHandler(this.editDataButton_Click);
             // 
             // ordersDataGridView
             // 

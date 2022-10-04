@@ -1,4 +1,5 @@
-﻿using JewelryWorkshopLibrary.Models;
+﻿using JewelryWorkshop;
+using JewelryWorkshopLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,6 +41,12 @@ namespace JewelryWorkshopWinFormsUI
             compositionDataGridView.DataSource = productModel.ProductComposition.GetRange(0, productModel.ProductComposition.Count);
             compositionDataGridView.Columns[0].Visible = false;
             compositionDataGridView.Columns[2].Visible = false;
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            CreateProduct createProduct = new CreateProduct(productModel);
+            createProduct.Show();
         }
     }
 }

@@ -41,6 +41,7 @@
             this.materialsLabel = new System.Windows.Forms.Label();
             this.deleteSelectedMaterialButton = new System.Windows.Forms.Button();
             this.materialsDataGridView = new System.Windows.Forms.DataGridView();
+            this.saveSelectedButton = new System.Windows.Forms.Button();
             this.newMaterialGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.materialsDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -162,11 +163,22 @@
             this.materialsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.materialsDataGridView.Location = new System.Drawing.Point(472, 124);
             this.materialsDataGridView.Name = "materialsDataGridView";
-            this.materialsDataGridView.ReadOnly = true;
             this.materialsDataGridView.RowHeadersWidth = 51;
             this.materialsDataGridView.RowTemplate.Height = 29;
             this.materialsDataGridView.Size = new System.Drawing.Size(513, 341);
             this.materialsDataGridView.TabIndex = 9;
+            // 
+            // saveSelectedButton
+            // 
+            this.saveSelectedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveSelectedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveSelectedButton.Location = new System.Drawing.Point(772, 62);
+            this.saveSelectedButton.Name = "saveSelectedButton";
+            this.saveSelectedButton.Size = new System.Drawing.Size(214, 59);
+            this.saveSelectedButton.TabIndex = 16;
+            this.saveSelectedButton.Text = "Save Selected";
+            this.saveSelectedButton.UseVisualStyleBackColor = true;
+            this.saveSelectedButton.Click += new System.EventHandler(this.saveSelectedButton_Click_1);
             // 
             // CreateMaterial
             // 
@@ -174,6 +186,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(998, 476);
+            this.Controls.Add(this.saveSelectedButton);
             this.Controls.Add(this.materialsDataGridView);
             this.Controls.Add(this.deleteSelectedMaterialButton);
             this.Controls.Add(this.materialsLabel);
@@ -206,5 +219,6 @@
         private Label materialsLabel;
         private Button deleteSelectedMaterialButton;
         private DataGridView materialsDataGridView;
+        private Button saveSelectedButton;
     }
 }

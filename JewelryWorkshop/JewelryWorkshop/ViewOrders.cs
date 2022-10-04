@@ -23,7 +23,8 @@ namespace JewelryWorkshop
         public ViewOrders()
         {
             InitializeComponent();
-            LoadOrders();//includes upwiring of the lists
+            LoadOrders();
+
             GlobalStuff.Connector.OnOrderCompletionStatusChanged += Connector_OnOrderCompletionStatusChanged;
             GlobalStuff.Connector.OnOrderCreated += Connector_OnOrderCreated;
         }
@@ -99,10 +100,5 @@ namespace JewelryWorkshop
             LoadOrders();
         }
 
-        private void editDataButton_Click(object sender, EventArgs e)
-        {
-            EditData editData = new EditData();
-            editData.Show();
-        }
     }
 }

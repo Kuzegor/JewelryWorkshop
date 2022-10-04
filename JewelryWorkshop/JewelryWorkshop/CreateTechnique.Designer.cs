@@ -41,6 +41,7 @@
             this.techniquePriceLabel = new System.Windows.Forms.Label();
             this.techniqueNameLabel = new System.Windows.Forms.Label();
             this.headerLabel = new System.Windows.Forms.Label();
+            this.saveSelectedButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.techniquesDataGridView)).BeginInit();
             this.newTechniquelGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +58,6 @@
             this.techniquesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.techniquesDataGridView.Location = new System.Drawing.Point(472, 124);
             this.techniquesDataGridView.Name = "techniquesDataGridView";
-            this.techniquesDataGridView.ReadOnly = true;
             this.techniquesDataGridView.RowHeadersWidth = 51;
             this.techniquesDataGridView.RowTemplate.Height = 29;
             this.techniquesDataGridView.Size = new System.Drawing.Size(513, 341);
@@ -168,12 +168,25 @@
             this.headerLabel.TabIndex = 10;
             this.headerLabel.Text = "Technique Creator";
             // 
+            // saveSelectedButton
+            // 
+            this.saveSelectedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveSelectedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveSelectedButton.Location = new System.Drawing.Point(771, 59);
+            this.saveSelectedButton.Name = "saveSelectedButton";
+            this.saveSelectedButton.Size = new System.Drawing.Size(214, 59);
+            this.saveSelectedButton.TabIndex = 15;
+            this.saveSelectedButton.Text = "Save Selected";
+            this.saveSelectedButton.UseVisualStyleBackColor = true;
+            this.saveSelectedButton.Click += new System.EventHandler(this.saveSelectedButton_Click);
+            // 
             // CreateTechnique
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(999, 481);
+            this.Controls.Add(this.saveSelectedButton);
             this.Controls.Add(this.techniquesDataGridView);
             this.Controls.Add(this.deleteSelectedTechniqueButton);
             this.Controls.Add(this.jewelryTechniquesLabel);
@@ -206,5 +219,6 @@
         private Label techniquePriceLabel;
         private Label techniqueNameLabel;
         private Label headerLabel;
+        private Button saveSelectedButton;
     }
 }

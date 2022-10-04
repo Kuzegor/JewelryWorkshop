@@ -43,6 +43,7 @@
             this.deleteSelectedClientButton = new System.Windows.Forms.Button();
             this.clientsLabel = new System.Windows.Forms.Label();
             this.clientsDataGridView = new System.Windows.Forms.DataGridView();
+            this.saveSelectedButton = new System.Windows.Forms.Button();
             this.newClientGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientsDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -93,6 +94,7 @@
             // phoneTextBox
             // 
             this.phoneTextBox.Location = new System.Drawing.Point(213, 201);
+            this.phoneTextBox.MaxLength = 20;
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(309, 43);
             this.phoneTextBox.TabIndex = 5;
@@ -182,11 +184,22 @@
             this.clientsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.clientsDataGridView.Location = new System.Drawing.Point(575, 123);
             this.clientsDataGridView.Name = "clientsDataGridView";
-            this.clientsDataGridView.ReadOnly = true;
             this.clientsDataGridView.RowHeadersWidth = 51;
             this.clientsDataGridView.RowTemplate.Height = 29;
             this.clientsDataGridView.Size = new System.Drawing.Size(644, 409);
             this.clientsDataGridView.TabIndex = 11;
+            // 
+            // saveSelectedButton
+            // 
+            this.saveSelectedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveSelectedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveSelectedButton.Location = new System.Drawing.Point(1005, 58);
+            this.saveSelectedButton.Name = "saveSelectedButton";
+            this.saveSelectedButton.Size = new System.Drawing.Size(214, 59);
+            this.saveSelectedButton.TabIndex = 12;
+            this.saveSelectedButton.Text = "Save Selected";
+            this.saveSelectedButton.UseVisualStyleBackColor = true;
+            this.saveSelectedButton.Click += new System.EventHandler(this.saveSelectedButton_Click);
             // 
             // CreateClient
             // 
@@ -194,6 +207,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1231, 544);
+            this.Controls.Add(this.saveSelectedButton);
             this.Controls.Add(this.clientsDataGridView);
             this.Controls.Add(this.clientsLabel);
             this.Controls.Add(this.deleteSelectedClientButton);
@@ -228,5 +242,6 @@
         private Button deleteSelectedClientButton;
         private Label clientsLabel;
         private DataGridView clientsDataGridView;
+        private Button saveSelectedButton;
     }
 }

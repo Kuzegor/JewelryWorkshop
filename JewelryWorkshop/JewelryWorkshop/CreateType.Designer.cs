@@ -33,10 +33,12 @@
             this.productTypeNameTextBox = new System.Windows.Forms.TextBox();
             this.createTypeButton = new System.Windows.Forms.Button();
             this.newProductTypeGroupBox = new System.Windows.Forms.GroupBox();
-            this.productTypesListBox = new System.Windows.Forms.ListBox();
             this.productTypeLabel = new System.Windows.Forms.Label();
             this.deleteSelectedTypeButton = new System.Windows.Forms.Button();
+            this.saveSelectedButton = new System.Windows.Forms.Button();
+            this.productTypesDataGridView = new System.Windows.Forms.DataGridView();
             this.newProductTypeGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productTypesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -78,19 +80,6 @@
             this.newProductTypeGroupBox.TabStop = false;
             this.newProductTypeGroupBox.Text = "New Product Type";
             // 
-            // productTypesListBox
-            // 
-            this.productTypesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.productTypesListBox.FormattingEnabled = true;
-            this.productTypesListBox.ItemHeight = 37;
-            this.productTypesListBox.Location = new System.Drawing.Point(438, 121);
-            this.productTypesListBox.Name = "productTypesListBox";
-            this.productTypesListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.productTypesListBox.Size = new System.Drawing.Size(356, 226);
-            this.productTypesListBox.TabIndex = 5;
-            // 
             // productTypeLabel
             // 
             this.productTypeLabel.AutoSize = true;
@@ -111,15 +100,45 @@
             this.deleteSelectedTypeButton.UseVisualStyleBackColor = true;
             this.deleteSelectedTypeButton.Click += new System.EventHandler(this.deleteSelectedTypeButton_Click);
             // 
+            // saveSelectedButton
+            // 
+            this.saveSelectedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveSelectedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveSelectedButton.Location = new System.Drawing.Point(726, 56);
+            this.saveSelectedButton.Name = "saveSelectedButton";
+            this.saveSelectedButton.Size = new System.Drawing.Size(214, 59);
+            this.saveSelectedButton.TabIndex = 13;
+            this.saveSelectedButton.Text = "Save Selected";
+            this.saveSelectedButton.UseVisualStyleBackColor = true;
+            this.saveSelectedButton.Click += new System.EventHandler(this.saveSelectedButton_Click);
+            // 
+            // productTypesDataGridView
+            // 
+            this.productTypesDataGridView.AllowUserToAddRows = false;
+            this.productTypesDataGridView.AllowUserToDeleteRows = false;
+            this.productTypesDataGridView.AllowUserToOrderColumns = true;
+            this.productTypesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.productTypesDataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.productTypesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.productTypesDataGridView.Location = new System.Drawing.Point(438, 121);
+            this.productTypesDataGridView.Name = "productTypesDataGridView";
+            this.productTypesDataGridView.RowHeadersWidth = 51;
+            this.productTypesDataGridView.RowTemplate.Height = 29;
+            this.productTypesDataGridView.Size = new System.Drawing.Size(506, 234);
+            this.productTypesDataGridView.TabIndex = 14;
+            // 
             // CreateType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(810, 367);
+            this.ClientSize = new System.Drawing.Size(956, 367);
+            this.Controls.Add(this.productTypesDataGridView);
+            this.Controls.Add(this.saveSelectedButton);
             this.Controls.Add(this.deleteSelectedTypeButton);
             this.Controls.Add(this.productTypeLabel);
-            this.Controls.Add(this.productTypesListBox);
             this.Controls.Add(this.newProductTypeGroupBox);
             this.Controls.Add(this.headerLabel);
             this.Font = new System.Drawing.Font("Nirmala UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -129,6 +148,7 @@
             this.Text = "CreateType";
             this.newProductTypeGroupBox.ResumeLayout(false);
             this.newProductTypeGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productTypesDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,8 +160,9 @@
         private TextBox productTypeNameTextBox;
         private Button createTypeButton;
         private GroupBox newProductTypeGroupBox;
-        private ListBox productTypesListBox;
         private Label productTypeLabel;
         private Button deleteSelectedTypeButton;
+        private Button saveSelectedButton;
+        private DataGridView productTypesDataGridView;
     }
 }

@@ -16,16 +16,51 @@ namespace JewelryWorkshopLibrary
 
         public event EventHandler<ProductTypeModel> OnTypeCreated;
         public event EventHandler<List<ProductTypeModel>> OnTypesDeleted;
+        public event EventHandler<List<ProductTypeModel>> OnTypesUpdated;
         public event EventHandler<MaterialModel> OnMaterialCreated;
         public event EventHandler<List<MaterialModel>> OnMaterialsDeleted;
+        public event EventHandler<List<MaterialModel>> OnMaterialsUpdated;
         public event EventHandler<JewelryTechniqueModel> OnTechniqueCreated;
         public event EventHandler<List<JewelryTechniqueModel>> OnTechniquesDeleted;
+        public event EventHandler<List<JewelryTechniqueModel>> OnTechniquesUpdated;
         public event EventHandler<ClientModel> OnClientCreated;
         public event EventHandler<List<ClientModel>> OnClientsDeleted;
+        public event EventHandler<List<ClientModel>> OnClientsUpdated;
         public event EventHandler<ProductModel> OnProductCreated;
+        public event EventHandler OnProductUpdated;
         public event EventHandler<OrderModel> OnOrderCreated;
         public event EventHandler OnOrderCompletionStatusChanged;
 
+        public void UpdateProduct(ProductModel productModel)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalStuff.GetConnectionString(connectionStringName)))
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@ProductName", productModel.ProductName);
+                parameters.Add("@ProductTypeId", productModel.ProductType.Id);
+                parameters.Add("@ProductPrice", productModel.ProductPrice);
+                parameters.Add("@id", productModel.Id);
+                connection.Execute("dbo.spProducts_UpdateById", parameters, commandType: CommandType.StoredProcedure);
+
+                InsertIntoCompositionAndProcessing(productModel, connection);
+            }
+            OnProductUpdated?.Invoke(this, EventArgs.Empty);
+        }
+        public void UpdateProductPrices(List<ProductModel> productModels)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalStuff.GetConnectionString(connectionStringName)))
+            {
+                DynamicParameters parameters = new DynamicParameters();
+
+                foreach (ProductModel productModel in productModels)
+                {
+                    parameters.Add("@ProductPrice", productModel.ProductPrice);
+                    parameters.Add("@id", productModel.Id);
+                    connection.Execute("dbo.spProducts_UpdatePriceById", parameters, commandType: CommandType.StoredProcedure);
+                    parameters = new DynamicParameters();
+                }
+            }
+        }
         public void UpdateOrderCompletionStatus(OrderModel orderModel, bool orderIsComplete)
         {
             using (IDbConnection connection = new SqlConnection(GlobalStuff.GetConnectionString(connectionStringName)))
@@ -36,6 +71,73 @@ namespace JewelryWorkshopLibrary
                 connection.Execute("dbo.spOrders_UpdateCompletionStatus", parameters, commandType: CommandType.StoredProcedure);
             }
             OnOrderCompletionStatusChanged?.Invoke(this, EventArgs.Empty);
+        }
+        public void UpdateClients(List<ClientModel> clientModels)
+        {
+            using(IDbConnection connection = new SqlConnection(GlobalStuff.GetConnectionString(connectionStringName)))
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                foreach (ClientModel clientModel in clientModels)
+                {
+                    parameters.Add("@LastName", clientModel.LastName);
+                    parameters.Add("@FirstName", clientModel.FirstName);
+                    parameters.Add("@MiddleName", clientModel.MiddleName);
+                    parameters.Add("@Phone", clientModel.Phone);
+                    parameters.Add("@id", clientModel.Id);
+                    connection.Execute("dbo.spClients_UpdateById", parameters, commandType: CommandType.StoredProcedure);
+                    parameters = new DynamicParameters();
+                }
+                OnClientsUpdated?.Invoke(this, clientModels);
+            }
+        }
+        public void UpdateMaterials(List<MaterialModel> materialModels)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalStuff.GetConnectionString(connectionStringName)))
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                foreach (MaterialModel materialModel in materialModels)
+                {
+                    parameters.Add("@MaterialName", materialModel.MaterialName);
+                    parameters.Add("@Price", materialModel.Price);
+                    parameters.Add("@Unit", materialModel.Unit);
+                    parameters.Add("@id", materialModel.Id);
+                    connection.Execute("dbo.spMaterials_UpdateById", parameters, commandType: CommandType.StoredProcedure);
+                    parameters = new DynamicParameters();
+                }
+                OnMaterialsUpdated?.Invoke(this, materialModels);
+            }
+        }
+        public void UpdateTechniques(List<JewelryTechniqueModel> techniqueModels)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalStuff.GetConnectionString(connectionStringName)))
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                foreach (JewelryTechniqueModel techniqueModel in techniqueModels)
+                {
+                    parameters.Add("@TechniqueName", techniqueModel.TechniqueName);
+                    parameters.Add("@Price", techniqueModel.Price);
+                    parameters.Add("@Unit", techniqueModel.Unit);
+                    parameters.Add("@id", techniqueModel.Id);
+                    connection.Execute("dbo.spJewelryTechniques_UpdateById", parameters, commandType: CommandType.StoredProcedure);
+                    parameters = new DynamicParameters();
+                }
+            }
+            OnTechniquesUpdated?.Invoke(this, techniqueModels);
+        }
+        public void UpdateTypes(List<ProductTypeModel> typeModels)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalStuff.GetConnectionString(connectionStringName)))
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                foreach (ProductTypeModel typeModel in typeModels)
+                {
+                    parameters.Add("@TypeName", typeModel.TypeName);
+                    parameters.Add("@id", typeModel.Id);
+                    connection.Execute("dbo.spProductTypes_UpdateById", parameters, commandType: CommandType.StoredProcedure);
+                    parameters = new DynamicParameters();
+                }
+            }
+            OnTypesUpdated?.Invoke(this, typeModels);
         }
 
         public void CreateOrder(OrderModel orderModel)
@@ -72,23 +174,7 @@ namespace JewelryWorkshopLibrary
                 connection.Execute("dbo.spProducts_Insert", parameters, commandType: CommandType.StoredProcedure);
                 productModel.Id = parameters.Get<int>("@id");
 
-                foreach (MaterialModel material in productModel.ProductComposition)
-                {
-                    parameters = new DynamicParameters();
-                    parameters.Add("@ProductId", productModel.Id);
-                    parameters.Add("@MaterialId", material.Id);
-                    parameters.Add("@Amount", material.Amount);
-                    connection.Execute("dbo.spProductComposition_Insert", parameters, commandType: CommandType.StoredProcedure);
-                }
-
-                foreach (JewelryTechniqueModel technique in productModel.ProductProcessing)
-                {
-                    parameters = new DynamicParameters();
-                    parameters.Add("@ProductId", productModel.Id);
-                    parameters.Add("@TechniqueId", technique.Id);
-                    parameters.Add("@Amount", technique.Amount);
-                    connection.Execute("dbo.spProductProcessing_Insert", parameters, commandType: CommandType.StoredProcedure);
-                }
+                InsertIntoCompositionAndProcessing(productModel, connection);
             }
             OnProductCreated?.Invoke(this, productModel);
         }
@@ -307,6 +393,26 @@ namespace JewelryWorkshopLibrary
             return clients;
         }
 
+        private void InsertIntoCompositionAndProcessing(ProductModel productModel, IDbConnection connection)
+        {
+            foreach (MaterialModel material in productModel.ProductComposition)
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@ProductId", productModel.Id);
+                parameters.Add("@MaterialId", material.Id);
+                parameters.Add("@Amount", material.Amount);
+                connection.Execute("dbo.spProductComposition_Insert", parameters, commandType: CommandType.StoredProcedure);
+            }
+
+            foreach (JewelryTechniqueModel technique in productModel.ProductProcessing)
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@ProductId", productModel.Id);
+                parameters.Add("@TechniqueId", technique.Id);
+                parameters.Add("@Amount", technique.Amount);
+                connection.Execute("dbo.spProductProcessing_Insert", parameters, commandType: CommandType.StoredProcedure);
+            }
+        }
         private void LoadProductsData(List<ProductModel> products, IDbConnection connection)
         {
             DynamicParameters parameters;

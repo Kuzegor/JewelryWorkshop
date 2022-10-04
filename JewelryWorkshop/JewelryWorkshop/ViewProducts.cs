@@ -37,15 +37,79 @@ namespace JewelryWorkshopWinFormsUI
 
             GlobalStuff.Connector.OnTypeCreated += Connector_OnTypeCreated;
             GlobalStuff.Connector.OnTypesDeleted += Connector_OnTypesDeleted;
+            GlobalStuff.Connector.OnTypesUpdated += Connector_OnTypesUpdated;
+            GlobalStuff.Connector.OnMaterialsUpdated += Connector_OnMaterialsUpdated;
+            GlobalStuff.Connector.OnTechniquesUpdated += Connector_OnTechniquesUpdated;
             GlobalStuff.Connector.OnProductCreated += Connector_OnProductCreated;
+            GlobalStuff.Connector.OnProductUpdated += Connector_OnProductUpdated;
         }
 
+        private void Connector_OnProductUpdated(object? sender, EventArgs e)
+        {
+            WireUpListOfTypes();
+            WireUpListsOfProducts();
+        }
+        private void Connector_OnTechniquesUpdated(object? sender, List<JewelryTechniqueModel> techniqueModels)
+        {
+            List<ProductModel> productsToUpdate = new List<ProductModel>();
+            foreach (JewelryTechniqueModel techniqueModel in techniqueModels)
+            {
+                foreach (ProductModel product in allProducts)
+                {
+                    foreach (JewelryTechniqueModel technique in product.ProductProcessing)
+                    {
+                        if (technique.Id == techniqueModel.Id)
+                        {
+                            product.ProductPrice -= Decimal.Multiply(technique.Price, Convert.ToDecimal(technique.Amount));
+                            technique.Price = techniqueModel.Price;
+                            product.ProductPrice += Decimal.Multiply(technique.Price, Convert.ToDecimal(technique.Amount));
+                            productsToUpdate.Add(product);
+                        }
+                    }
+                }
+            }
+            GlobalStuff.Connector.UpdateProductPrices(productsToUpdate);
+            WireUpListsOfProducts();
+        }
+        private void Connector_OnMaterialsUpdated(object? sender, List<MaterialModel> materialModels)
+        {
+            List<ProductModel> productsToUpdate = new List<ProductModel>();
+            foreach (MaterialModel materialModel in materialModels)
+            {
+                foreach (ProductModel product in allProducts)
+                {
+                    foreach (MaterialModel material in product.ProductComposition)
+                    {
+                        if (material.Id == materialModel.Id)
+                        {
+                            product.ProductPrice -= Decimal.Multiply(material.Price,Convert.ToDecimal(material.Amount));
+                            material.Price = materialModel.Price;
+                            product.ProductPrice += Decimal.Multiply(material.Price, Convert.ToDecimal(material.Amount));
+                            productsToUpdate.Add(product);
+                        }
+                    }
+                }
+            }
+            GlobalStuff.Connector.UpdateProductPrices(productsToUpdate);
+            WireUpListsOfProducts();
+        }
+        private void Connector_OnTypesUpdated(object? sender, List<ProductTypeModel> updatedTypes)
+        {
+            foreach (ProductTypeModel type in updatedTypes)
+            {
+                ProductTypeModel typeToUpdate = typesForFiltering.Where(x => x.Id == type.Id).FirstOrDefault();
+                if (typeToUpdate != null)
+                {
+                    typeToUpdate.TypeName = type.TypeName;
+                }      
+            }
+            WireUpListOfTypes();
+        }
         private void Connector_OnProductCreated(object? sender, ProductModel productModel)
         {
             allProducts.Add(productModel);
             WireUpListsOfProducts();
         }
-
         private void Connector_OnTypesDeleted(object? sender, List<ProductTypeModel> deletedTypes)
         {
             foreach (ProductTypeModel type in deletedTypes)
