@@ -82,7 +82,8 @@
             // 
             // productsListBox
             // 
-            this.productsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.productsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.productsListBox.FormattingEnabled = true;
             this.productsListBox.ItemHeight = 37;
@@ -114,6 +115,7 @@
             // 
             // CreateOrderButton
             // 
+            this.CreateOrderButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.CreateOrderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateOrderButton.Font = new System.Drawing.Font("Nirmala UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.CreateOrderButton.Location = new System.Drawing.Point(398, 556);
@@ -126,6 +128,7 @@
             // 
             // totalPriceLabel
             // 
+            this.totalPriceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.totalPriceLabel.AutoSize = true;
             this.totalPriceLabel.Location = new System.Drawing.Point(571, 489);
             this.totalPriceLabel.Name = "totalPriceLabel";

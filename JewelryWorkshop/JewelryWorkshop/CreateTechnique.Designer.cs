@@ -42,6 +42,13 @@
             this.techniqueNameLabel = new System.Windows.Forms.Label();
             this.headerLabel = new System.Windows.Forms.Label();
             this.saveSelectedButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.columnsRadioButton = new System.Windows.Forms.RadioButton();
+            this.rowsRadioButton = new System.Windows.Forms.RadioButton();
+            this.showAllButton = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.sortButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.techniquesDataGridView)).BeginInit();
             this.newTechniquelGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +67,7 @@
             this.techniquesDataGridView.Name = "techniquesDataGridView";
             this.techniquesDataGridView.RowHeadersWidth = 51;
             this.techniquesDataGridView.RowTemplate.Height = 29;
-            this.techniquesDataGridView.Size = new System.Drawing.Size(513, 341);
+            this.techniquesDataGridView.Size = new System.Drawing.Size(800, 388);
             this.techniquesDataGridView.TabIndex = 14;
             // 
             // deleteSelectedTechniqueButton
@@ -170,22 +177,114 @@
             // 
             // saveSelectedButton
             // 
-            this.saveSelectedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveSelectedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveSelectedButton.Location = new System.Drawing.Point(771, 59);
+            this.saveSelectedButton.Location = new System.Drawing.Point(110, 457);
             this.saveSelectedButton.Name = "saveSelectedButton";
-            this.saveSelectedButton.Size = new System.Drawing.Size(214, 59);
+            this.saveSelectedButton.Size = new System.Drawing.Size(254, 55);
             this.saveSelectedButton.TabIndex = 15;
             this.saveSelectedButton.Text = "Save Selected";
             this.saveSelectedButton.UseVisualStyleBackColor = true;
             this.saveSelectedButton.Click += new System.EventHandler(this.saveSelectedButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(788, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(216, 38);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Selection Mode:";
+            // 
+            // columnsRadioButton
+            // 
+            this.columnsRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.columnsRadioButton.AutoSize = true;
+            this.columnsRadioButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.columnsRadioButton.Location = new System.Drawing.Point(1130, 16);
+            this.columnsRadioButton.Name = "columnsRadioButton";
+            this.columnsRadioButton.Size = new System.Drawing.Size(124, 35);
+            this.columnsRadioButton.TabIndex = 22;
+            this.columnsRadioButton.TabStop = true;
+            this.columnsRadioButton.Text = "Columns";
+            this.columnsRadioButton.UseVisualStyleBackColor = true;
+            this.columnsRadioButton.CheckedChanged += new System.EventHandler(this.columnsRadioButton_CheckedChanged);
+            // 
+            // rowsRadioButton
+            // 
+            this.rowsRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rowsRadioButton.AutoSize = true;
+            this.rowsRadioButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rowsRadioButton.Location = new System.Drawing.Point(1025, 16);
+            this.rowsRadioButton.Name = "rowsRadioButton";
+            this.rowsRadioButton.Size = new System.Drawing.Size(88, 35);
+            this.rowsRadioButton.TabIndex = 21;
+            this.rowsRadioButton.TabStop = true;
+            this.rowsRadioButton.Text = "Rows";
+            this.rowsRadioButton.UseVisualStyleBackColor = true;
+            this.rowsRadioButton.CheckedChanged += new System.EventHandler(this.rowsRadioButton_CheckedChanged);
+            // 
+            // showAllButton
+            // 
+            this.showAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.showAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.showAllButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.showAllButton.Location = new System.Drawing.Point(1065, 78);
+            this.showAllButton.Name = "showAllButton";
+            this.showAllButton.Size = new System.Drawing.Size(123, 43);
+            this.showAllButton.TabIndex = 20;
+            this.showAllButton.Text = "Show All";
+            this.showAllButton.UseVisualStyleBackColor = true;
+            this.showAllButton.Click += new System.EventHandler(this.showAllButton_Click);
+            // 
+            // searchButton
+            // 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.searchButton.Location = new System.Drawing.Point(737, 78);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(45, 43);
+            this.searchButton.TabIndex = 19;
+            this.searchButton.Text = "🔎";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // searchBox
+            // 
+            this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBox.Location = new System.Drawing.Point(788, 78);
+            this.searchBox.MaxLength = 20;
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(271, 43);
+            this.searchBox.TabIndex = 18;
+            // 
+            // sortButton
+            // 
+            this.sortButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sortButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.sortButton.Location = new System.Drawing.Point(1194, 78);
+            this.sortButton.Name = "sortButton";
+            this.sortButton.Size = new System.Drawing.Size(78, 43);
+            this.sortButton.TabIndex = 23;
+            this.sortButton.Text = "Sort";
+            this.sortButton.UseVisualStyleBackColor = true;
+            this.sortButton.Click += new System.EventHandler(this.sortButton_Click);
             // 
             // CreateTechnique
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(999, 481);
+            this.ClientSize = new System.Drawing.Size(1286, 528);
+            this.Controls.Add(this.sortButton);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.columnsRadioButton);
+            this.Controls.Add(this.rowsRadioButton);
+            this.Controls.Add(this.showAllButton);
+            this.Controls.Add(this.searchButton);
+            this.Controls.Add(this.searchBox);
             this.Controls.Add(this.saveSelectedButton);
             this.Controls.Add(this.techniquesDataGridView);
             this.Controls.Add(this.deleteSelectedTechniqueButton);
@@ -220,5 +319,12 @@
         private Label techniqueNameLabel;
         private Label headerLabel;
         private Button saveSelectedButton;
+        private Label label1;
+        private RadioButton columnsRadioButton;
+        private RadioButton rowsRadioButton;
+        private Button showAllButton;
+        private Button searchButton;
+        private TextBox searchBox;
+        private Button sortButton;
     }
 }

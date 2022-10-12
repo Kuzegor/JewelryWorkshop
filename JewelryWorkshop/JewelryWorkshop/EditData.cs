@@ -13,9 +13,10 @@ namespace JewelryWorkshopWinFormsUI
 {
     public partial class EditData : Form
     {
-        public EditData(ViewOrders callingViewOrdersForm)
+        public EditData()
         {
             InitializeComponent();
+            this.MinimumSize = this.Size;
         }
 
         private void productsButton_Click(object sender, EventArgs e)

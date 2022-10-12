@@ -36,6 +36,14 @@
             this.ViewSelectedButton = new System.Windows.Forms.Button();
             this.editDataButton = new System.Windows.Forms.Button();
             this.ordersDataGridView = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.columnsRadioButton = new System.Windows.Forms.RadioButton();
+            this.rowsRadioButton = new System.Windows.Forms.RadioButton();
+            this.showAllButton = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.ordersLabel = new System.Windows.Forms.Label();
+            this.sortButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,13 +103,15 @@
             // 
             // editDataButton
             // 
+            this.editDataButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.editDataButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editDataButton.Location = new System.Drawing.Point(22, 586);
+            this.editDataButton.Location = new System.Drawing.Point(22, 309);
             this.editDataButton.Name = "editDataButton";
             this.editDataButton.Size = new System.Drawing.Size(290, 51);
             this.editDataButton.TabIndex = 7;
             this.editDataButton.Text = "View And Edit Data";
             this.editDataButton.UseVisualStyleBackColor = true;
+            this.editDataButton.Click += new System.EventHandler(this.editDataButton_Click);
             // 
             // ordersDataGridView
             // 
@@ -113,20 +123,123 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ordersDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.ordersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ordersDataGridView.Location = new System.Drawing.Point(335, 78);
+            this.ordersDataGridView.Location = new System.Drawing.Point(335, 123);
             this.ordersDataGridView.Name = "ordersDataGridView";
             this.ordersDataGridView.ReadOnly = true;
             this.ordersDataGridView.RowHeadersWidth = 51;
             this.ordersDataGridView.RowTemplate.Height = 29;
-            this.ordersDataGridView.Size = new System.Drawing.Size(708, 559);
+            this.ordersDataGridView.Size = new System.Drawing.Size(647, 237);
             this.ordersDataGridView.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(496, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(216, 38);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Selection Mode:";
+            // 
+            // columnsRadioButton
+            // 
+            this.columnsRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.columnsRadioButton.AutoSize = true;
+            this.columnsRadioButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.columnsRadioButton.Location = new System.Drawing.Point(838, 15);
+            this.columnsRadioButton.Name = "columnsRadioButton";
+            this.columnsRadioButton.Size = new System.Drawing.Size(124, 35);
+            this.columnsRadioButton.TabIndex = 23;
+            this.columnsRadioButton.TabStop = true;
+            this.columnsRadioButton.Text = "Columns";
+            this.columnsRadioButton.UseVisualStyleBackColor = true;
+            this.columnsRadioButton.CheckedChanged += new System.EventHandler(this.columnsRadioButton_CheckedChanged);
+            // 
+            // rowsRadioButton
+            // 
+            this.rowsRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rowsRadioButton.AutoSize = true;
+            this.rowsRadioButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rowsRadioButton.Location = new System.Drawing.Point(733, 15);
+            this.rowsRadioButton.Name = "rowsRadioButton";
+            this.rowsRadioButton.Size = new System.Drawing.Size(88, 35);
+            this.rowsRadioButton.TabIndex = 22;
+            this.rowsRadioButton.TabStop = true;
+            this.rowsRadioButton.Text = "Rows";
+            this.rowsRadioButton.UseVisualStyleBackColor = true;
+            this.rowsRadioButton.CheckedChanged += new System.EventHandler(this.rowsRadioButton_CheckedChanged);
+            // 
+            // showAllButton
+            // 
+            this.showAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.showAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.showAllButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.showAllButton.Location = new System.Drawing.Point(775, 77);
+            this.showAllButton.Name = "showAllButton";
+            this.showAllButton.Size = new System.Drawing.Size(123, 43);
+            this.showAllButton.TabIndex = 21;
+            this.showAllButton.Text = "Show All";
+            this.showAllButton.UseVisualStyleBackColor = true;
+            this.showAllButton.Click += new System.EventHandler(this.showAllButton_Click);
+            // 
+            // searchButton
+            // 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.searchButton.Location = new System.Drawing.Point(445, 77);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(45, 43);
+            this.searchButton.TabIndex = 20;
+            this.searchButton.Text = "🔎";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // searchBox
+            // 
+            this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBox.Location = new System.Drawing.Point(496, 77);
+            this.searchBox.MaxLength = 20;
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(273, 43);
+            this.searchBox.TabIndex = 18;
+            // 
+            // ordersLabel
+            // 
+            this.ordersLabel.AutoSize = true;
+            this.ordersLabel.Location = new System.Drawing.Point(335, 80);
+            this.ordersLabel.Name = "ordersLabel";
+            this.ordersLabel.Size = new System.Drawing.Size(107, 38);
+            this.ordersLabel.TabIndex = 24;
+            this.ordersLabel.Text = "Orders:";
+            // 
+            // sortButton
+            // 
+            this.sortButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sortButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.sortButton.Location = new System.Drawing.Point(904, 77);
+            this.sortButton.Name = "sortButton";
+            this.sortButton.Size = new System.Drawing.Size(78, 43);
+            this.sortButton.TabIndex = 25;
+            this.sortButton.Text = "Sort";
+            this.sortButton.UseVisualStyleBackColor = true;
+            this.sortButton.Click += new System.EventHandler(this.sortButton_Click);
             // 
             // ViewOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1063, 656);
+            this.ClientSize = new System.Drawing.Size(1002, 374);
+            this.Controls.Add(this.sortButton);
+            this.Controls.Add(this.ordersLabel);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.columnsRadioButton);
+            this.Controls.Add(this.rowsRadioButton);
+            this.Controls.Add(this.showAllButton);
+            this.Controls.Add(this.searchButton);
+            this.Controls.Add(this.searchBox);
             this.Controls.Add(this.ordersDataGridView);
             this.Controls.Add(this.editDataButton);
             this.Controls.Add(this.ViewSelectedButton);
@@ -154,5 +267,13 @@
         private Button ViewSelectedButton;
         private Button editDataButton;
         private DataGridView ordersDataGridView;
+        private Label label1;
+        private RadioButton columnsRadioButton;
+        private RadioButton rowsRadioButton;
+        private Button showAllButton;
+        private Button searchButton;
+        private TextBox searchBox;
+        private Label ordersLabel;
+        private Button sortButton;
     }
 }

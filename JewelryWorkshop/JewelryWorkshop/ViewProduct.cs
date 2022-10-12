@@ -18,6 +18,9 @@ namespace JewelryWorkshopWinFormsUI
         public ViewProduct(ProductModel productModel)
         {
             InitializeComponent();
+
+            this.MinimumSize = this.Size;
+
             this.productModel = productModel;
             nameLabel.Text = $"Name: {productModel.ProductName}";
             if (productModel.ProductType != null)

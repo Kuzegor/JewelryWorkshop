@@ -90,13 +90,14 @@
             // 
             // productsListBox
             // 
-            this.productsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.productsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.productsListBox.FormattingEnabled = true;
             this.productsListBox.ItemHeight = 37;
             this.productsListBox.Location = new System.Drawing.Point(18, 398);
             this.productsListBox.Name = "productsListBox";
-            this.productsListBox.Size = new System.Drawing.Size(556, 226);
+            this.productsListBox.Size = new System.Drawing.Size(394, 152);
             this.productsListBox.TabIndex = 5;
             // 
             // orderListLabel
@@ -110,8 +111,9 @@
             // 
             // viewSelectedButton
             // 
+            this.viewSelectedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.viewSelectedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.viewSelectedButton.Location = new System.Drawing.Point(595, 461);
+            this.viewSelectedButton.Location = new System.Drawing.Point(429, 446);
             this.viewSelectedButton.Name = "viewSelectedButton";
             this.viewSelectedButton.Size = new System.Drawing.Size(148, 104);
             this.viewSelectedButton.TabIndex = 7;
@@ -133,7 +135,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(761, 645);
+            this.ClientSize = new System.Drawing.Size(599, 586);
             this.Controls.Add(this.totalPriceLabel);
             this.Controls.Add(this.viewSelectedButton);
             this.Controls.Add(this.orderListLabel);

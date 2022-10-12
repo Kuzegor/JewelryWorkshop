@@ -32,8 +32,12 @@ namespace JewelryWorkshopWinFormsUI
 
             if (callingForm == null)
             {
-                addSelectedToOrderListButton.Enabled = false;
+                addSelectedToOrderListButton.Visible = false;
             }
+
+            this.MinimumSize = this.Size;
+
+            cheapFirstRadioButton.Checked = true;
 
             GlobalStuff.Connector.OnTypeCreated += Connector_OnTypeCreated;
             GlobalStuff.Connector.OnTypesDeleted += Connector_OnTypesDeleted;
@@ -216,6 +220,43 @@ namespace JewelryWorkshopWinFormsUI
             {
                 MessageBox.Show("You should select one product to proceed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            List<ProductModel> searchedProducts = new List<ProductModel>();
+            foreach (ProductModel product in productsToShow)
+            {
+                if (product.ProductName.Contains(searchBox.Text))
+                {
+                    searchedProducts.Add(productsToShow.Where(x => x.Id == product.Id).FirstOrDefault());
+                }
+            }
+
+            productsListBox.DataSource = null;
+            productsListBox.DataSource = searchedProducts;
+            productsListBox.DisplayMember = "ProductNameAndProductPrice";
+        }
+
+        private void showAllButton_Click(object sender, EventArgs e)
+        {
+            WireUpListsOfProducts();
+        }
+
+        private void cheapFirstRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            productsToShow = productsToShow.OrderBy(x => x.ProductPrice).ToList();
+            productsListBox.DataSource = null;
+            productsListBox.DataSource = productsToShow;
+            productsListBox.DisplayMember = "ProductNameAndProductPrice";
+        }
+
+        private void expensiveFirstRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            productsToShow = productsToShow.OrderByDescending(x => x.ProductPrice).ToList();
+            productsListBox.DataSource = null;
+            productsListBox.DataSource = productsToShow;
+            productsListBox.DisplayMember = "ProductNameAndProductPrice";
         }
     }
 }

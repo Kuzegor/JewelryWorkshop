@@ -158,6 +158,7 @@
             // 
             // removeMaterialsButton
             // 
+            this.removeMaterialsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.removeMaterialsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeMaterialsButton.Location = new System.Drawing.Point(1016, 316);
             this.removeMaterialsButton.Name = "removeMaterialsButton";
@@ -202,6 +203,7 @@
             // 
             // removeTechniquesButton
             // 
+            this.removeTechniquesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.removeTechniquesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeTechniquesButton.Location = new System.Drawing.Point(1016, 591);
             this.removeTechniquesButton.Name = "removeTechniquesButton";
@@ -279,6 +281,7 @@
             // 
             // createProductButton
             // 
+            this.createProductButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.createProductButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createProductButton.Font = new System.Drawing.Font("Nirmala UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.createProductButton.Location = new System.Drawing.Point(419, 769);
@@ -294,6 +297,8 @@
             this.addedMaterialsDataGridView.AllowUserToAddRows = false;
             this.addedMaterialsDataGridView.AllowUserToDeleteRows = false;
             this.addedMaterialsDataGridView.AllowUserToOrderColumns = true;
+            this.addedMaterialsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.addedMaterialsDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.addedMaterialsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.addedMaterialsDataGridView.Location = new System.Drawing.Point(480, 234);
@@ -309,6 +314,8 @@
             this.addedTechniquesDataGridView.AllowUserToAddRows = false;
             this.addedTechniquesDataGridView.AllowUserToDeleteRows = false;
             this.addedTechniquesDataGridView.AllowUserToOrderColumns = true;
+            this.addedTechniquesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.addedTechniquesDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.addedTechniquesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.addedTechniquesDataGridView.Location = new System.Drawing.Point(480, 509);

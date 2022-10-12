@@ -37,6 +37,11 @@
             this.viewSelectedButton = new System.Windows.Forms.Button();
             this.productsListBox = new System.Windows.Forms.ListBox();
             this.createNewProductButton = new System.Windows.Forms.Button();
+            this.showAllButton = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.expensiveFirstRadioButton = new System.Windows.Forms.RadioButton();
+            this.cheapFirstRadioButton = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -52,7 +57,7 @@
             // typeLabel
             // 
             this.typeLabel.AutoSize = true;
-            this.typeLabel.Location = new System.Drawing.Point(12, 86);
+            this.typeLabel.Location = new System.Drawing.Point(12, 123);
             this.typeLabel.Name = "typeLabel";
             this.typeLabel.Size = new System.Drawing.Size(81, 38);
             this.typeLabel.TabIndex = 1;
@@ -61,7 +66,7 @@
             // typeComboBox
             // 
             this.typeComboBox.FormattingEnabled = true;
-            this.typeComboBox.Location = new System.Drawing.Point(99, 83);
+            this.typeComboBox.Location = new System.Drawing.Point(99, 120);
             this.typeComboBox.Name = "typeComboBox";
             this.typeComboBox.Size = new System.Drawing.Size(368, 45);
             this.typeComboBox.TabIndex = 2;
@@ -70,7 +75,7 @@
             // addSelectedToOrderListButton
             // 
             this.addSelectedToOrderListButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addSelectedToOrderListButton.Location = new System.Drawing.Point(99, 402);
+            this.addSelectedToOrderListButton.Location = new System.Drawing.Point(99, 475);
             this.addSelectedToOrderListButton.Name = "addSelectedToOrderListButton";
             this.addSelectedToOrderListButton.Size = new System.Drawing.Size(272, 97);
             this.addSelectedToOrderListButton.TabIndex = 3;
@@ -81,7 +86,7 @@
             // deleteSelectedButton
             // 
             this.deleteSelectedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteSelectedButton.Location = new System.Drawing.Point(99, 235);
+            this.deleteSelectedButton.Location = new System.Drawing.Point(99, 308);
             this.deleteSelectedButton.Name = "deleteSelectedButton";
             this.deleteSelectedButton.Size = new System.Drawing.Size(272, 58);
             this.deleteSelectedButton.TabIndex = 4;
@@ -92,7 +97,7 @@
             // viewSelectedButton
             // 
             this.viewSelectedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.viewSelectedButton.Location = new System.Drawing.Point(99, 171);
+            this.viewSelectedButton.Location = new System.Drawing.Point(99, 244);
             this.viewSelectedButton.Name = "viewSelectedButton";
             this.viewSelectedButton.Size = new System.Drawing.Size(272, 58);
             this.viewSelectedButton.TabIndex = 5;
@@ -107,16 +112,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.productsListBox.FormattingEnabled = true;
             this.productsListBox.ItemHeight = 37;
-            this.productsListBox.Location = new System.Drawing.Point(484, 83);
+            this.productsListBox.Location = new System.Drawing.Point(484, 120);
             this.productsListBox.Name = "productsListBox";
             this.productsListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.productsListBox.Size = new System.Drawing.Size(569, 522);
+            this.productsListBox.Size = new System.Drawing.Size(539, 485);
             this.productsListBox.TabIndex = 6;
             // 
             // createNewProductButton
             // 
             this.createNewProductButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createNewProductButton.Location = new System.Drawing.Point(99, 299);
+            this.createNewProductButton.Location = new System.Drawing.Point(99, 372);
             this.createNewProductButton.Name = "createNewProductButton";
             this.createNewProductButton.Size = new System.Drawing.Size(272, 97);
             this.createNewProductButton.TabIndex = 11;
@@ -124,12 +129,78 @@
             this.createNewProductButton.UseVisualStyleBackColor = true;
             this.createNewProductButton.Click += new System.EventHandler(this.createNewProductButton_Click);
             // 
+            // showAllButton
+            // 
+            this.showAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.showAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.showAllButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.showAllButton.Location = new System.Drawing.Point(899, 71);
+            this.showAllButton.Name = "showAllButton";
+            this.showAllButton.Size = new System.Drawing.Size(123, 43);
+            this.showAllButton.TabIndex = 23;
+            this.showAllButton.Text = "Show All";
+            this.showAllButton.UseVisualStyleBackColor = true;
+            this.showAllButton.Click += new System.EventHandler(this.showAllButton_Click);
+            // 
+            // searchButton
+            // 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.searchButton.Location = new System.Drawing.Point(485, 71);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(45, 43);
+            this.searchButton.TabIndex = 22;
+            this.searchButton.Text = "🔎";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // searchBox
+            // 
+            this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBox.Location = new System.Drawing.Point(536, 71);
+            this.searchBox.MaxLength = 20;
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(357, 43);
+            this.searchBox.TabIndex = 21;
+            // 
+            // expensiveFirstRadioButton
+            // 
+            this.expensiveFirstRadioButton.AutoSize = true;
+            this.expensiveFirstRadioButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.expensiveFirstRadioButton.Location = new System.Drawing.Point(265, 182);
+            this.expensiveFirstRadioButton.Name = "expensiveFirstRadioButton";
+            this.expensiveFirstRadioButton.Size = new System.Drawing.Size(185, 35);
+            this.expensiveFirstRadioButton.TabIndex = 26;
+            this.expensiveFirstRadioButton.TabStop = true;
+            this.expensiveFirstRadioButton.Text = "Expensive First";
+            this.expensiveFirstRadioButton.UseVisualStyleBackColor = true;
+            this.expensiveFirstRadioButton.CheckedChanged += new System.EventHandler(this.expensiveFirstRadioButton_CheckedChanged);
+            // 
+            // cheapFirstRadioButton
+            // 
+            this.cheapFirstRadioButton.AutoSize = true;
+            this.cheapFirstRadioButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cheapFirstRadioButton.Location = new System.Drawing.Point(99, 182);
+            this.cheapFirstRadioButton.Name = "cheapFirstRadioButton";
+            this.cheapFirstRadioButton.Size = new System.Drawing.Size(149, 35);
+            this.cheapFirstRadioButton.TabIndex = 25;
+            this.cheapFirstRadioButton.TabStop = true;
+            this.cheapFirstRadioButton.Text = "Cheap First";
+            this.cheapFirstRadioButton.UseVisualStyleBackColor = true;
+            this.cheapFirstRadioButton.CheckedChanged += new System.EventHandler(this.cheapFirstRadioButton_CheckedChanged);
+            // 
             // ViewProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1073, 624);
+            this.ClientSize = new System.Drawing.Size(1043, 645);
+            this.Controls.Add(this.expensiveFirstRadioButton);
+            this.Controls.Add(this.cheapFirstRadioButton);
+            this.Controls.Add(this.showAllButton);
+            this.Controls.Add(this.searchButton);
+            this.Controls.Add(this.searchBox);
             this.Controls.Add(this.createNewProductButton);
             this.Controls.Add(this.productsListBox);
             this.Controls.Add(this.viewSelectedButton);
@@ -158,5 +229,10 @@
         private Button viewSelectedButton;
         private ListBox productsListBox;
         private Button createNewProductButton;
+        private Button showAllButton;
+        private Button searchButton;
+        private TextBox searchBox;
+        private RadioButton expensiveFirstRadioButton;
+        private RadioButton cheapFirstRadioButton;
     }
 }

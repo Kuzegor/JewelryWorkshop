@@ -1,3 +1,9 @@
+begin
+create database JewelryWorkshop;
+end
+go
+
+begin
 use JewelryWorkshop;
 
 create table ProductTypes(
@@ -51,7 +57,8 @@ TotalPrice money);
 create table OrderProducts(
 id int identity primary key,
 OrderId int references Orders(id) on delete cascade on update cascade,
-ProductId int references Products(id) on delete set null on update cascade),
-Quantity int;
+ProductId int references Products(id) on delete set null on update cascade,
+Quantity int);
+end
 
 

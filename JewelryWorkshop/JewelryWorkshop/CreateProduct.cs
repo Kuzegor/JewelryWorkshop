@@ -30,6 +30,8 @@ namespace JewelryWorkshop
             WireUpLists();
             productPriceLabel.Text = $"Product Price: {productModel.ProductPrice:C2}";
 
+            this.MinimumSize = this.Size;
+
             SubscribeToEvents();
         }
 

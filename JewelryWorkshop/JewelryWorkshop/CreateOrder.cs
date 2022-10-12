@@ -26,6 +26,8 @@ namespace JewelryWorkshopWinFormsUI
             WireUpListOfClients();
             WireUpListOfProducts();
 
+            this.MinimumSize = this.Size;
+
             orderModel.GetTotalPriceOfProducts(addedProducts);
             totalPriceLabel.Text = $"Total Price: {orderModel.TotalPrice:C2}";
 

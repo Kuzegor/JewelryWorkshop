@@ -20,6 +20,8 @@ namespace JewelryWorkshopWinFormsUI
             InitializeComponent();
             this.orderModel = orderModel;
 
+            this.MinimumSize = this.Size;
+
             idLabel.Text = $"ID: {orderModel.Id}";
             if (orderModel.Client != null)
             {

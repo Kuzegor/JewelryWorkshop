@@ -22,6 +22,8 @@ namespace JewelryWorkshopWinFormsUI
             this.callingForm = callingForm;
             this.selectedProduct = selectedProduct;
             headerLabel.Text = $"Adding {selectedProduct.ProductName}";
+            this.MinimumSize = this.Size;
+            this.MaximumSize = this.Size;
         }
         
         private void confirmButton_Click(object sender, EventArgs e)

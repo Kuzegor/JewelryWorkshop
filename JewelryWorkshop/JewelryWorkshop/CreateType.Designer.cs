@@ -37,6 +37,10 @@
             this.deleteSelectedTypeButton = new System.Windows.Forms.Button();
             this.saveSelectedButton = new System.Windows.Forms.Button();
             this.productTypesDataGridView = new System.Windows.Forms.DataGridView();
+            this.showAllButton = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.searchBox = new System.Windows.Forms.TextBox();
+            this.sortButton = new System.Windows.Forms.Button();
             this.newProductTypeGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productTypesDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -102,11 +106,10 @@
             // 
             // saveSelectedButton
             // 
-            this.saveSelectedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveSelectedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveSelectedButton.Location = new System.Drawing.Point(726, 56);
+            this.saveSelectedButton.Location = new System.Drawing.Point(87, 348);
             this.saveSelectedButton.Name = "saveSelectedButton";
-            this.saveSelectedButton.Size = new System.Drawing.Size(214, 59);
+            this.saveSelectedButton.Size = new System.Drawing.Size(254, 55);
             this.saveSelectedButton.TabIndex = 13;
             this.saveSelectedButton.Text = "Save Selected";
             this.saveSelectedButton.UseVisualStyleBackColor = true;
@@ -126,15 +129,67 @@
             this.productTypesDataGridView.Name = "productTypesDataGridView";
             this.productTypesDataGridView.RowHeadersWidth = 51;
             this.productTypesDataGridView.RowTemplate.Height = 29;
-            this.productTypesDataGridView.Size = new System.Drawing.Size(506, 234);
+            this.productTypesDataGridView.Size = new System.Drawing.Size(702, 281);
             this.productTypesDataGridView.TabIndex = 14;
+            // 
+            // showAllButton
+            // 
+            this.showAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.showAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.showAllButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.showAllButton.Location = new System.Drawing.Point(933, 75);
+            this.showAllButton.Name = "showAllButton";
+            this.showAllButton.Size = new System.Drawing.Size(123, 43);
+            this.showAllButton.TabIndex = 20;
+            this.showAllButton.Text = "Show All";
+            this.showAllButton.UseVisualStyleBackColor = true;
+            this.showAllButton.Click += new System.EventHandler(this.showAllButton_Click);
+            // 
+            // searchButton
+            // 
+            this.searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.searchButton.Location = new System.Drawing.Point(640, 75);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(45, 43);
+            this.searchButton.TabIndex = 19;
+            this.searchButton.Text = "🔎";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // searchBox
+            // 
+            this.searchBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBox.Location = new System.Drawing.Point(691, 75);
+            this.searchBox.MaxLength = 20;
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(236, 43);
+            this.searchBox.TabIndex = 18;
+            // 
+            // sortButton
+            // 
+            this.sortButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sortButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sortButton.Font = new System.Drawing.Font("Nirmala UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.sortButton.Location = new System.Drawing.Point(1062, 75);
+            this.sortButton.Name = "sortButton";
+            this.sortButton.Size = new System.Drawing.Size(78, 43);
+            this.sortButton.TabIndex = 21;
+            this.sortButton.Text = "Sort";
+            this.sortButton.UseVisualStyleBackColor = true;
+            this.sortButton.Click += new System.EventHandler(this.sortButton_Click);
             // 
             // CreateType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(956, 367);
+            this.ClientSize = new System.Drawing.Size(1152, 414);
+            this.Controls.Add(this.sortButton);
+            this.Controls.Add(this.showAllButton);
+            this.Controls.Add(this.searchButton);
+            this.Controls.Add(this.searchBox);
             this.Controls.Add(this.productTypesDataGridView);
             this.Controls.Add(this.saveSelectedButton);
             this.Controls.Add(this.deleteSelectedTypeButton);
@@ -164,5 +219,9 @@
         private Button deleteSelectedTypeButton;
         private Button saveSelectedButton;
         private DataGridView productTypesDataGridView;
+        private Button showAllButton;
+        private Button searchButton;
+        private TextBox searchBox;
+        private Button sortButton;
     }
 }

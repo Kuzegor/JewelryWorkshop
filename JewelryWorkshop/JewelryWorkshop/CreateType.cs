@@ -18,10 +18,14 @@ namespace JewelryWorkshopWinFormsUI
         private List<ProductTypeModel> listOfTypes = GlobalStuff.Connector.GetAllTypes();
         private List<ProductTypeModel> selectedTypes = new List<ProductTypeModel>();
 
+        private bool sortOrderIsDescending;
+
         public CreateType()
         {
             InitializeComponent();
             WireUpLists();
+
+            this.MinimumSize = this.Size;
         }
 
         private void WireUpLists()
@@ -70,6 +74,43 @@ namespace JewelryWorkshopWinFormsUI
                 selectedTypes.Add(typeToDelete);
             }
             GlobalStuff.Connector.UpdateTypes(selectedTypes);
+            WireUpLists();
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            List<ProductTypeModel> searchedTypes = new List<ProductTypeModel>();
+            int columnId = 1;
+            foreach (DataGridViewRow row in productTypesDataGridView.Rows)
+            {
+                if (row.Cells[columnId].Value.ToString().Contains(searchBox.Text))
+                {
+                    searchedTypes.Add(listOfTypes.Where(x => x.Id == int.Parse(row.Cells[0].Value.ToString())).FirstOrDefault());
+                }
+            }
+
+            productTypesDataGridView.DataSource = null;
+            productTypesDataGridView.DataSource = searchedTypes.GetRange(0, searchedTypes.Count);
+            productTypesDataGridView.Columns[0].Visible = false;
+        }
+
+        private void showAllButton_Click(object sender, EventArgs e)
+        {
+            WireUpLists();
+        }
+
+        private void sortButton_Click(object sender, EventArgs e)
+        {
+            if (sortOrderIsDescending)
+            {
+                listOfTypes = listOfTypes.OrderBy(x => x.TypeName).ToList();
+                sortOrderIsDescending = false;
+            }
+            else
+            {
+                listOfTypes = listOfTypes.OrderByDescending(x => x.TypeName).ToList();
+                sortOrderIsDescending = true;
+            }
             WireUpLists();
         }
     }

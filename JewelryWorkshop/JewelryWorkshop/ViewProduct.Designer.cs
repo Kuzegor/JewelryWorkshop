@@ -111,7 +111,7 @@
             this.compositionDataGridView.ReadOnly = true;
             this.compositionDataGridView.RowHeadersWidth = 51;
             this.compositionDataGridView.RowTemplate.Height = 29;
-            this.compositionDataGridView.Size = new System.Drawing.Size(511, 263);
+            this.compositionDataGridView.Size = new System.Drawing.Size(511, 127);
             this.compositionDataGridView.TabIndex = 8;
             // 
             // processingDataGridView
@@ -128,14 +128,14 @@
             this.processingDataGridView.ReadOnly = true;
             this.processingDataGridView.RowHeadersWidth = 51;
             this.processingDataGridView.RowTemplate.Height = 29;
-            this.processingDataGridView.Size = new System.Drawing.Size(512, 263);
+            this.processingDataGridView.Size = new System.Drawing.Size(512, 127);
             this.processingDataGridView.TabIndex = 9;
             // 
             // editButton
             // 
             this.editButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.editButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editButton.Location = new System.Drawing.Point(837, 16);
+            this.editButton.Location = new System.Drawing.Point(838, 16);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(219, 49);
             this.editButton.TabIndex = 10;
@@ -148,7 +148,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1070, 581);
+            this.ClientSize = new System.Drawing.Size(1071, 445);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.processingDataGridView);
             this.Controls.Add(this.compositionDataGridView);
