@@ -1,2 +1,2 @@
 # JewelryWorkshop
-Application for a jewelry workshop
+CRUD application for a jewelry workshop
