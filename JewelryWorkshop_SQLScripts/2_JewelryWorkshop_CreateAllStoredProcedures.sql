@@ -1,3 +1,5 @@
+use JewelryWorkshop;
+go
 
 CREATE PROCEDURE dbo.spClients_DeleteById
 @id int
